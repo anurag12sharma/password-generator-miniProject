@@ -21,6 +21,8 @@ const allCheckbox = document.querySelectorAll("input[type=checkbox]");
 
 const generateBtn = document.querySelector("[generate-btn]");
 
+setIndicator("beige");
+
 handleSlider();
 // sets the password length
 function handleSlider(){
@@ -29,7 +31,9 @@ function handleSlider(){
 }
 
 function setIndicator(color){
-     indicator.style.backgroundColor = color;
+    indicator.style.backgroundColor = color;
+    // indicator.style.
+    // indicator.classList.add = ("shadow-lg");
 }
 
 function getRandomInteger(min,max){
@@ -65,13 +69,13 @@ function calStrength(){
     if(symbolCheck.checked) hasSymbol = true;
 
     if(hasUpper && hasLower && (hasNumber || hasSymbol) && passwordLength>=8){
-        setIndicator("#0f0");
+        setIndicator("lightGreen");
     }
     else if((hasLower || hasUpper) && (hasNumber || hasSymbol) && passwordLength>=6){
-        setIndicator("#ff0");
+        setIndicator("yellow");
     }
     else{
-        setIndicator("f00");
+        setIndicator("red");
     }
 }
 
@@ -135,6 +139,11 @@ generateBtn.addEventListener('click',()=>{
     if (count==0)
         return;
     
+
+    if(passwordLength<count){
+        passwordLength = count;
+        handleSlider();
+    };
     password = "";
 
     let funcArr = [];
